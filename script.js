@@ -39,6 +39,13 @@ function filtrarPorEspecie(personajes, especie) {
   // dejando solo los que coinciden (repasa el ejercicio 3 de la práctica).
 }
 
+function ordenarPersonajes (personajes){
+
+    return personajes.sort((a,b) => a.name.localeCompare(b.name));
+
+}
+
+
 let personajes = [];
 
 function aplicarFiltros() {
@@ -79,4 +86,12 @@ document.querySelector("#filtro-especie").addEventListener("change", aplicarFilt
 obtenerPersonajes().then(function (datos) {
   personajes = datos;
   aplicarFiltros();
+});
+
+const botonOrdenar = document.querySelector("#ordenar");
+
+botonOrdenar.addEventListener("click", function () {
+   personajes = ordenarPersonajes(personajes);
+   aplicarFiltros(); //Actualizar pantalla
+    
 });
