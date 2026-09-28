@@ -15,6 +15,9 @@ async function obtenerPersonajes() {
 // a JSON y devuelve el array de personajes (repasa el ejercicio 1 de la práctica).
 }
 
+function encontrarPersonaje (personajes, nombre){
+  return personajes.find (item => item.name.toLowerCase() === nombre);
+}
 
 function filtrarPorEstado(personajes, estado) {
 
@@ -96,6 +99,20 @@ function aplicarFiltros() {
       document.querySelector("#resultado-busqueda").textContent = "Posición del personaje: " + (posicion+1);
     }
     
+  const personajeEncontrado = encontrarPersonaje (personajes, nombre)
+
+  if (personajeEncontrado) {
+        document.querySelector("#personaje-encontrado").innerHTML = 
+        "Personaje encontrado: " + "<br>" + "<br>" +
+        "Nombre: " + personajeEncontrado.name + "<br>" +
+        "Estado: " + personajeEncontrado.status + "<br>" +
+        "Tipo: " + personajeEncontrado.type + "<br>" +
+        "Genero: " + personajeEncontrado.gender;
+    }
+
+  else {
+    document.querySelector("#personaje-encontrado").textContent = ""
+  }
 
   let filtrados = filtrarPorEstado(personajes, estado);
   filtrados = filtrarPorEspecie(filtrados, especie);
